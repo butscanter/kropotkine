@@ -2,175 +2,195 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kropotkine Boulangerie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Newsletter</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body, html {
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Open Sans', sans-serif;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
     }
 
+    /* Conteneur principal */
     .hero {
-      background-image: url('image_pain.png'); 
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       color: white;
+      text-align: center;
+      padding: 40px 24px;
+      overflow: hidden;
+    }
+
+    /* Image de fond avec fondu noir -> image */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('image_pain.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0;
+      animation: fadeInBg 2.5s ease forwards;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      opacity: 1;
+      animation: fadeOutBlack 2.5s ease forwards;
+      z-index: -1;
+    }
+
+    @keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOutBlack { from { opacity: 1; } to { opacity: 0; } }
+
+    /* Titre */
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 48px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+      opacity: 0;
+      animation: fadeInText 2s ease forwards 0.5s;
+    }
+    @keyframes fadeInText { to { opacity: 1; } }
+
+    /* Section principale */
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      max-width: 1000px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .text, .form {
+      flex: 1;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
+      text-align: left;
+      min-height: 220px;
+      opacity: 0;
     }
 
-    .contactbox {
-    
-      margin: 50px 0 30px;
+    .text {
+      animation: slideInLeft 1.5s ease forwards 1s;
+      color: #cccccc; /* texte en gris */
+    }
+    .form {
+      animation: slideInRight 1.5s ease forwards 1s;
     }
 
-    .checkbox {
-    
-      vertical-align: middle;
+    @keyframes slideInLeft {
+      from { transform: translateX(-50px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
     }
 
-    .checkboxtext {
-    
-      margin: 10px 0 10px;
-    }
-    
-    .subtext {
-      font-size: 1.5em;
-      margin: 10px 0 10px; 
-    }
-
-    .h2box {
-      
-      margin: 50px 0 50px; 
+    /* Divider vertical */
+    .divider {
+      width: 2px;
+      height: 220px;
+      background: rgba(255,255,255,0.8);
+      opacity: 0;
+      animation: fadeInText 2s ease forwards 1.2s;
     }
 
-    .hero h1 {
-      font-size: 5em;
-      margin: 0;
-    }
-
-    .hero h2 {
-        font-size: 1 em;
-     font-style: italic;
-      margin: 10px 0 10px;
-    }
-
-    .hero h3 {
-      font-size: 1 em;
-     font-style: italic;
-      margin: 100px 0 30px;
-    }
-
-    .contact-button {
-      padding: 15px 30px;
-      background-color: rgba(255, 255, 255, 0.85);
-      color: #333;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .contact-button:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
-
-    footer {
-      background-color: #f4f4f4;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    footer a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    form {
-      margin-top: 10px;
+    /* Formulaire listmonk */
+    .listmonk-form {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 380px;
+      width: 100%;
     }
-
-    input[type="email"] {
-      padding: 10px;
-      width: 250px;
-      max-width: 100%;
+    .listmonk-form h3 {
+      margin: 0 0 16px 0;
     }
-
-    input[type="submit"] {
-      padding: 10px 20px;
-      background-color: #333;
+    .listmonk-form input[type="email"],
+    .listmonk-form input[type="text"] {
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+      width: 100%;
+    }
+    .listmonk-form input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    .listmonk-form input[type="submit"] {
+      padding: 12px;
+      background: #0073e6;
       color: white;
       border: none;
+      border-radius: 6px;
+      font-size: 1rem;
       cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .listmonk-form input[type="submit"]:hover {
+      background: #005bb5;
+      transform: scale(1.05);
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2em;
-      }
-
-      .hero h2 {
-        font-size: 1.2em;
-      }
-
-      .hero h3 {
-      font-size: 1.2em;
-     font-style: italic;
-      margin: 30px 0 30px;
-    }
-
-     .subtext {
-      font-size: 1.2em;
-      margin: 10px 0 10px; 
-    }
-
-      .contact-button {
-        padding: 12px 24px;
-        font-size: 0.9em;
-      }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content { flex-direction: column; gap: 20px; }
+      .divider { display: none; }
+      .text, .form { max-width: 100%; min-height: auto; }
+      .hero h1 { margin-bottom: 28px; }
     }
   </style>
 </head>
 <body>
-
   <div class="hero">
-    <h1>KROPOTKINE</h1>
-    <div class="subtext">Boulangerie collectiviste et qualitative</div>
-    <div class="h2box">
-    <h2>Pain bio au levain maison</h2>
-    <h2>Farines de blé paysan</h2>
-    <h2>Organisation en SCOP</h2></div>
+    <h1>Bienvenue sur notre Newsletter</h1>
+    <div class="content">
+      <div class="text">
+        <h2>Restez informé</h2>
+        <p>
+          Recevez chaque semaine nos dernières actualités, conseils et ressources directement dans votre boîte mail.
+          Ne manquez rien et rejoignez notre communauté grandissante.
+        </p>
+      </div>
+      <div class="divider"></div>
+      <div class="form">
+        <form method="post" action="http://http://77.128.23.38:9000/subscription/form" class="listmonk-form">
+          <div>
+            <h3>S'abonner</h3>
+            <input type="hidden" name="nonce" />
 
+            <!-- Champ email obligatoire -->
+            <p><input type="email" name="email" required placeholder="E-mail" /></p>
 
-       
-     <h3>Ouverture prochaine en métropole lilloise</h2>
-      
-  <div class="contactbox">
-    <form action="/submit" method="post">
-       <input type="checkbox" name="subscribe" value="yes"><div class="checkboxtext">Je m'abonne à la newsletter</div>
-      <input type="email" id="email" name="email" placeholder="Votre email">
-      <input type="submit" value="Envoyer">
-    </form>
-  
-</form>
-</div>
- 
+            <!-- Champ nom facultatif -->
+            <p><input type="text" name="name" placeholder="Nom (facultatif)" /></p>
 
+            <!-- Liste UUID obligatoire, mais cachée -->
+            <input type="hidden" name="l" value="e88088d1-5a38-47fd-9827-7cf404e565bc" />
+
+            <!-- Bouton -->
+            <input type="submit" value="S'abonner" />
+          </div>
+        </form>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
