@@ -13,7 +13,6 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Conteneur principal */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -26,7 +25,6 @@
       overflow: hidden;
     }
 
-    /* Image de fond avec fade-in */
     .hero::before {
       content: "";
       position: absolute;
@@ -38,7 +36,6 @@
       z-index: -2;
     }
 
-    /* Overlay noir semi-transparent */
     .hero::after {
       content: "";
       position: absolute;
@@ -49,7 +46,6 @@
 
     @keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Titres */
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 20px;
@@ -66,7 +62,6 @@
     }
     @keyframes fadeInText { to { opacity: 1; } }
 
-    /* Section principale */
     .content {
       display: flex;
       justify-content: center;
@@ -88,13 +83,12 @@
       opacity: 0;
     }
 
-    /* Animations desktop */
     .text {
-      animation: slideInLeft 1.5s ease forwards 1.2s; /* après les titres */
+      animation: slideInLeft 1.5s ease forwards 1.2s;
       color: #e0e0e0;
     }
     .form {
-      animation: slideInRight 1.5s ease forwards 1.4s; /* après le texte */
+      animation: slideInRight 1.5s ease forwards 1.4s;
     }
 
     @keyframes slideInLeft {
@@ -106,13 +100,11 @@
       to   { transform: translateX(0); opacity: 1; }
     }
 
-    /* Animation fade simple pour mobile */
     @keyframes fadeInBlock {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Divider vertical */
     .divider {
       width: 2px;
       height: 220px;
@@ -121,7 +113,6 @@
       animation: fadeInText 2s ease forwards 1.2s;
     }
 
-    /* Formulaire listmonk */
     .listmonk-form {
       display: flex;
       flex-direction: column;
@@ -148,12 +139,43 @@
       cursor: pointer;
       transition: transform 0.3s ease, background 0.3s ease;
       display: block;
-      margin: 0 auto;       /* centré */
+      margin: 0 auto;
       width: fit-content;
     }
     .listmonk-form input[type="submit"]:hover {
       background: #005bb5;
       transform: scale(1.05);
+    }
+
+    /* Footer sur l'image */
+    footer {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    footer a {
+      display: inline-block;
+      margin: 0 10px;
+      opacity: 0;
+      animation: fadeInLogo 1.5s ease forwards 1.6s;
+    }
+    footer img {
+      width: 32px;
+      height: 32px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+    footer img:hover,
+    footer img:active {
+      filter: grayscale(0%);
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeInLogo {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* Responsive */
@@ -169,6 +191,11 @@
       .form { animation-delay: 1.4s; }
       .hero h1 { margin-bottom: 16px; }
       .hero h2 { margin-bottom: 28px; }
+
+      footer {
+        position: relative;   /* plus d’absolu en mobile */
+        margin-top: 40px;     /* espace au-dessus */
+      }
     }
   </style>
 </head>
@@ -191,12 +218,22 @@
             <h3>S'abonner</h3>
             <input type="hidden" name="nonce" />
             <p><input type="email" name="email" required placeholder="E-mail" /></p>
-            <input id="e42be" type="hidden" name="l" checked value="e42bebb6-f021-4057-8777-146fa39c3b8c" />
+            <input type="hidden" name="l" checked value="e42bebb6-f021-4057-8777-146fa39c3b8c" />
             <input type="submit" value="S'abonner" />
           </div>
         </form>
       </div>
     </div>
+
+    <!-- Footer avec logos gris -->
+    <footer>
+      <a href="https://www.instagram.com/boulangerie_kropotkine/" target="_blank">
+        <img src="instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com" target="_blank">
+        <img src="facebook.svg" alt="Facebook">
+      </a>
+    </footer>
   </div>
 </body>
 </html>
