@@ -7,9 +7,8 @@
 	<meta property="og:title" content="Kropotkine, boulangerie coopérative" />
 	<meta property="og:description" content="Kropotkine est un projet de boulangerie proposant des pains bios, au levain, cuit au four à bois, pour une implantation prévue en métropole lilloise en 2026." />
 	
-
-  
   <title>Boulangerie Kropotkine</title>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html, body {
@@ -78,7 +77,7 @@
       flex: 1;
     }
 
-    .text, .form {
+    .text, .sib-form {
       flex: 1;
       max-width: 420px;
       display: flex;
@@ -93,7 +92,7 @@
       animation: slideInLeft 1.5s ease forwards 1.2s;
       color: #e0e0e0;
     }
-    .form {
+    .sib-form {
       animation: slideInRight 1.5s ease forwards 1.4s;
     }
 
@@ -118,40 +117,8 @@
       opacity: 0;
       animation: fadeInText 2s ease forwards 1.2s;
     }
-
-    .listmonk-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 380px;
-      width: 100%;
-    }
-    .listmonk-form h3 { margin: 0 0 16px 0; }
-    .listmonk-form input[type="email"],
-    .listmonk-form input[type="text"] {
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      outline: none;
-      width: 100%;
-    }
-    .listmonk-form input[type="submit"] {
-      padding: 12px;
-      background: #0073e6;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
-      display: block;
-      margin: 0 auto;
-      width: fit-content;
-    }
-    .listmonk-form input[type="submit"]:hover {
-      background: #005bb5;
-      transform: scale(1.05);
-    }
+  
+   
 
     /* Footer sur l'image */
     footer {
@@ -178,6 +145,7 @@
       filter: grayscale(0%);
       transform: scale(1.2);
     }
+   
 
     @keyframes fadeInLogo {
       from { opacity: 0; transform: translateY(20px); }
@@ -258,7 +226,7 @@
       </div>
       <div class="divider"></div>
 <div class="sib-form" style="text-align: center;
-         background-color: #EFF2F7;                                           ">
+         background-color: #EFF2F7">
   <div id="sib-form-container" class="sib-form-container">
     <div id="sib-container" class="sib-container--medium sib-container--vertical" style="text-align:center; background-color:rgba(255,255,255,1); max-width:350px; border-radius:3px; border-width:1px; border-color:#C0CCD9; border-style:solid;">
       <form id="sib-form" method="POST" action="https://c58efe74.sibforms.com/serve/MUIFAHltyfygdKB5Sjr6y_b5l_0f2T-5G5BLRADOqqLPET7VHv1l0_a3Q3kDfr-_wfojlp3T4vHywAOD1eMyneEDKLqD732CRU95BcqzDDcU_3TreESAfD1DZbFy7kdkLAI_TJo1UlixggzYACaZN8w0Kxqc6272c3oCj4dGrYxgnvpSmWY0I-W93JL14wDV1zXBj3mFJKlnMMLsFg==">
@@ -266,10 +234,10 @@
           <div class="sib-input sib-form-block">
             <div class="form__entry entry_block">
               <div class="form__label-row ">
-                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="EMAIL" data-required="*">Veuillez renseigner votre adresse email pour avoir de nos nouvelles</label>
+                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="EMAIL" data-required="*">Veuillez renseigner votre adresse email</label>
 
                 <div class="entry__field">
-                  <input class="input " type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Votre adresse email" data-required="true" required />
+                  <input class="input " style="color:#3c4858;" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Votre adresse email" data-required="true" required />
                 </div>
               </div>
 
@@ -293,7 +261,7 @@
               <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
               </label>
               <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
-                Vous pouvez vous désinscrire à tout moment en cliquant sur le lien présent dans nos emails.
+                Vos données sont protégées et vous pouvez vous désinscrire à tout moment.
               </label>
             </div>
           </div>
