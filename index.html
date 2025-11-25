@@ -18,6 +18,33 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
+     .headline {
+      position: relative;
+      min-height: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 10px 10px;
+      
+    }
+    .headline h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: black;
+      opacity: 0;
+      animation: fadeInText .2s ease forwards 0.1s;
+    }
+    .headline h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+       color: black;
+      opacity: 0;
+      animation: fadeInText .2s ease forwards 0.1s;
+    }
+
+
     .hero {
       position: relative;
       min-height: 100vh;
@@ -228,9 +255,12 @@
 	<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 </head>
 <body>
-  <div class="hero">
-    <h1>KROPOTKINE</h1>
+  <div class="headline">
+   <h1>KROPOTKINE</h1>
     <h2>Boulangerie collectiviste et qualitative</h2>
+    </div>
+  <div class="hero">
+   
     <div class="content">
       <div class="text">
         <p>Kropotkine est un projet de boulangerie proposant des pains bios, au levain, cuit au four à bois, organisée en Société Coopérative de Production. </p>
