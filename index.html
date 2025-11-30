@@ -1,372 +1,242 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:locale" content="fr_FR" />
-	<meta property="og:title" content="Kropotkine, boulangerie coopérative" />
-	<meta property="og:description" content="Kropotkine est un projet de boulangerie proposant des pains bios, au levain, cuit au four à bois, pour une implantation prévue en métropole lilloise en 2026." />
-	
-  <title>Boulangerie Kropotkine</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kropotkine — Boulangerie</title>
 
+  <!-- Tailwind CDN (mobile-first) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Styles additionnels (animations, petites corrections) -->
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
+    /* Animations simples */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .animate-fadeInDown { animation: fadeInDown .7s ease both; }
+    .animate-fadeInLeft { animation: fadeInLeft .7s ease both; }
+    .animate-fadeInRight { animation: fadeInRight .7s ease both; }
+
+    /* Petite correction pour l'effet focus scale (tailwind ne propose pas scale-102) */
+    .focus-scale {
+      transition: transform .18s ease;
+    }
+    .focus-scale:focus {
+      transform: scale(1.02);
     }
 
-     .headline {
-      position: relative;
-      min-height: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: white;
-      text-align: center;
-      padding: 10px 10px;
-      
-    }
-    .headline h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: black;
-      opacity: 0;
-      animation: fadeInText .2s ease forwards 0.1s;
-    }
-    .headline h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-       color: black;
-      opacity: 0;
-      animation: fadeInText .2s ease forwards 0.1s;
+    /* Dégradé pour améliorer lisibilité sur petites images */
+    .hero-overlay-gradient {
+      background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.65) 100%);
     }
 
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: white;
-      text-align: center;
-      padding: 40px 24px;
-      
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('image_pain.png') no-repeat center center;
-      background-size: cover;
-      opacity: 0;
-      animation: fadeInBg 3s ease forwards;
-      z-index: -2;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: -1;
-    }
-
-    @keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-      opacity: 0;
-      animation: fadeInText 2s ease forwards 0.5s;
-    }
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-      opacity: 0;
-      animation: fadeInText 2s ease forwards 0.8s;
-    }
-    @keyframes fadeInText { to { opacity: 1; } }
-
-    .content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 28px;
-      max-width: 1000px;
-      width: 100%;
-      flex: 1;
-    }
-
-    .text, .sib-form {
-      flex: 1;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
-      min-height: 220px;
-      opacity: 0;
-    }
-
-    .text {
-      animation: slideInLeft 1.5s ease forwards 1.2s;
-      color: #e0e0e0;
-    }
-
-    .faq {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
-      padding: 40px 24px;
-      min-height: 220px;
-      max-width: 1000px;
-      width: 100%;
-      opacity: 0;
-      animation: fadeInText 2s ease forwards 2s;
-    }
-
-    .sib-form {
-      animation: slideInRight 1.5s ease forwards 1.4s;
-    }
-
-    @keyframes slideInLeft {
-      from { transform: translateX(-50px); opacity: 0; }
-      to   { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideInRight {
-      from { transform: translateX(50px); opacity: 0; }
-      to   { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes fadeInBlock {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .divider {
-      width: 2px;
-      height: 220px;
-      background: rgba(255,255,255,0.8);
-      opacity: 0;
-      animation: fadeInText 2s ease forwards 1.2s;
-    }
-  
-   
-
-    /* Footer sur l'image */
-    footer {
-     background-color: rgb(255, 255, 255);
-      height: 60px;
-      left: 0;
-      right: 0;
-      text-align: center;
-    }
-    footer a {
-      display: inline-block;
-      margin: 0 10px;
-      opacity: 0;
-      animation: fadeInLogo 1.5s ease forwards 1.6s;
-    }
-    footer img {
-      width: 32px;
-      height: 32px;
-      transition: filter 0.3s ease, transform 0.3s ease;
-    }
-    footer img:hover,
-    footer img:active {
-      transform: scale(1.2);
-    }
-   
-
-    @keyframes fadeInLogo {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .content { flex-direction: column; gap: 20px; }
-      .divider { display: none; }
-      .text, .form { 
-        max-width: 100%; 
-        min-height: auto; 
-        animation: fadeInBlock 1.5s ease forwards;
-      }
-      .text { animation-delay: 1.2s; }
-      .form { animation-delay: 1.4s; }
-      .hero h1 { margin-bottom: 16px; }
-      .hero h2 { margin-bottom: 28px; }
-
-      footer {
-        position: relative;   /* plus d’absolu en mobile */
-        margin-top: 40px;     /* espace au-dessus */
-      }
-    }
-	  
-@font-face {
-    font-display: block;
-    font-family: Roboto;
-    src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff")
-  }
-
-  @font-face {
-    font-display: fallback;
-    font-family: Roboto;
-    font-weight: 600;
-    src: url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff")
-  }
-
-  @font-face {
-    font-display: fallback;
-    font-family: Roboto;
-    font-weight: 700;
-    src: url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff")
-  }
-
-  #sib-container input:-ms-input-placeholder {
-    text-align: left;
-    font-family: Helvetica, sans-serif;
-    color: #c0ccda;
-  }
-
-  #sib-container input::placeholder {
-    text-align: left;
-    font-family: Helvetica, sans-serif;
-    color: #c0ccda;
-  }
-
-  #sib-container a {
-    text-decoration: underline;
-    color: #2BB2FC;
-  }
-	  
+    /* Amélioration de l'accessibilité pour <details> */
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
   </style>
-	<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 </head>
-<body>
-  <div class="headline">
-   <h1>KROPOTKINE</h1>
-    <h2>Boulangerie collectiviste et qualitative</h2>
-    </div>
-  <div class="hero">
-   
-    <div class="content">
-      <div class="text">
-        <p>Kropotkine est un projet de boulangerie proposant des pains bios, au levain, cuit au four à bois, organisée en Société Coopérative de Production. </p>
-        <p>Kropotkine s’inscrit dans une démarche résolument joyeuse, locale, ouverte, inclusive, sociale et engagée.</p>
-        <p>Nous envisageons une implantation en métropole lilloise en 2026.</p>
-        <!--  <a href="#faq">En savoir plus</a> -->
-   
+<body class="bg-white font-serif text-gray-900">
+
+  <!-- HERO : mobile-first, empilement puis grille sur md+ -->
+  <header class="relative w-full h-80%">
+    <div
+      class="relative w-full flex items-center bg-cover bg-center"
+      style="background-image: url('/src/image_pain.webp'); min-height:75vh;"
+      aria-hidden="true"
+    >
+
+
+      <!-- Overlay sombre + gradient pour lisibilité -->
+      <div class="absolute inset-0 hero-overlay-gradient"></div>
+
+      <!-- Contenu du hero -->
+      <div class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="flex flex-col gap-8 md:grid md:grid-cols-2 md:items-center md:gap-6">
+
+          <!-- Bloc texte (col 1) -->
+          <div class="text-white md:pr-6">
+            <h1 class="text-amber-200/90 text-4xl sm:text-5xl font-extrabold leading-tight animate-fadeInDown">
+              Kropotkine
+            </h1>
+            <p class="mt-2 text-lg sm:text-2xl opacity-90 animate-fadeInDown">
+              Boulangerie collectiviste et qualitative
+            </p>
+
+            <div class="mt-6 text-sm sm:text-base space-y-4 text-white/90 animate-fadeInLeft">
+              <p>
+                Kropotkine est un projet de boulangerie proposant des pains bios, au levain, cuits au four à bois, organisée en Société Coopérative de Production.
+              </p>
+              <p>
+                Nous nous inscrivons dans une démarche joyeuse, locale, ouverte, inclusive, sociale et engagée.
+              </p>
+              <p>
+                Implantation envisagée en métropole lilloise en 2026.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bloc formulaire (col 2) -->
+          <div class="mt-4 md:mt-0 flex items-center justify-center animate-fadeInDown">
+            <form
+              id="sib-form"
+              method="POST"
+              action="https://c58efe74.sibforms.com/serve/MUIFAHltyfygdKB5Sjr6y_b5l_0f2T-5G5BLRADOqqLPET7VHv1l0_a3Q3kDfr-_wfojlp3T4vHywAOD1eMyneEDKLqD732CRU95BcqzDDcU_3TreESAfD1DZbFy7kdkLAI_TJo1UlixggzYACaZN8w0Kxqc6272c3oCj4dGrYxgnvpSmWY0I-W93JL14wDV1zXBj3mFJKlnMMLsFg=="
+              class="w-full max-w-md bg-gray-900/80 backdrop-blur-sm p-5 rounded-xl shadow-lg"
+              aria-label="Formulaire d'inscription à la newsletter Kropotkine"
+            >
+              <label for="EMAIL" class="block text-sm font-medium text-gray-100 text-center">
+                Je veux me tenir informé·e de la suite du projet
+              </label>
+
+              <div class="mt-3">
+                <input
+                  id="EMAIL"
+                  name="EMAIL"
+                  type="email"
+                  required
+                  placeholder="Votre adresse email"
+                  class="w-full px-4 py-3 rounded-md bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-1 "
+                  aria-required="true"
+                />
+              </div>
+              <div class="mt-4 flex items-start space-x-2">
+                <input 
+                  id="OPT_IN" 
+                  name="OPT_IN" 
+                  type="checkbox" 
+                  value="1" 
+                  required
+                  class="h-4 w-4 rounded border-gray-600 bg-gray-800 accent-amber-300 text-amber-600"
+                />
+                <label for="OPT_IN" class="text-sm text-gray-200">
+                  Je souhaite rester informé·e par notre newsletter.
+                  <span data-required="*" class="text-amber-200"></span>
+                </label>
+              </div>
+              <button
+                type="submit"
+                class=" mt-4 w-full inline-flex items-center justify-center gap-2 bg-amber-300 hover:bg-amber-300/80 active:bg-amber-400/80 text-black/50 font-semibold py-3 px-4 rounded-md transition-transform duration-200"
+                aria-label="S'inscrire à la newsletter"
+              >
+                S’INSCRIRE
+                <!-- SVG corrigé : barre + pointe (coordonnées absolues fiables) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h11"></path>
+                  <path d="M13 5l7 7-7 7"></path>
+                </svg>
+              </button>
+
+              <p class="mt-3 text-xs text-gray-300 text-center">
+                Nous n'envoyons que des nouvelles importantes. Vous pouvez vous désinscrire à tout moment.
+              </p>
+            </form>
+          </div>
+
+        </div>
       </div>
-      <div class="divider"></div>
-<div class="sib-form" style="text-align: center;
-         background-color: #00000000;color:#ffeded;border-radius: 8px; ">
-  <div id="sib-form-container" class="sib-form-container">
-    <div id="sib-container" class="sib-container--medium sib-container--vertical" style="background-color: #0000007b;color:#ffeded;border-radius: 8px;  text-align:center; max-width:350px; border-width:1px; border-color:#c0ccd900; border-style:solid;">
-      <form id="sib-form" method="POST" action="https://c58efe74.sibforms.com/serve/MUIFAHltyfygdKB5Sjr6y_b5l_0f2T-5G5BLRADOqqLPET7VHv1l0_a3Q3kDfr-_wfojlp3T4vHywAOD1eMyneEDKLqD732CRU95BcqzDDcU_3TreESAfD1DZbFy7kdkLAI_TJo1UlixggzYACaZN8w0Kxqc6272c3oCj4dGrYxgnvpSmWY0I-W93JL14wDV1zXBj3mFJKlnMMLsFg==">
-        <div style="padding: 8px 0;">
-          <div class="sib-input sib-form-block">
-            <div class="form__entry entry_block">
-              <div class="form__label-row ">
-                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; " for="EMAIL" data-required="*">Je veux me tenir informé.e de la suite du projet? </label>
-
-                <div class="entry__field">
-                  <input class="input " style="color:#3c4858;" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Votre adresse email" data-required="true" required />
-                </div>
-              </div>
-
-              <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
-              </label>
-            </div>
-          </div>
-        </div>
-        <div style="padding: 8px 0;">
-          <div class="sib-optin sib-form-block" data-required="true">
-            <div class="form__entry entry_mcq">
-              <div class="form__label-row ">
-                <div class="entry__choice" >
-                  <label>
-                    <input type="checkbox" class="input_replaced" value="1" id="OPT_IN" name="OPT_IN" required />
-                    <span class="checkbox checkbox_tick_positive" ></span>
-            <span style="font-size:14px; text-align:left; font-family:Helvetica, sans-serif; background-color:transparent;"><p>J'accepte de recevoir vos e-mails et confirme avoir pris connaissance de votre politique de confidentialité et mentions légales.</p><span data-required="*" style="display: inline;" class="entry__label entry__label_optin"></span></span> </label>
-                </div>
-              </div>
-              <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
-              </label>
-              <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
-                Vos données sont protégées et vous pouvez vous désinscrire à tout moment.
-              </label>
-            </div>
-          </div>
-        </div>
-        <div style="padding: 8px 0;">
-          <div class="sib-form-block" style="text-align: left">
-            <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#3E4857; border-radius:3px; border-width:0px;" form="sib-form" type="submit">
-              <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" >
-                <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
-              </svg>
-              S&#039;INSCRIRE
-            </button>
-          </div>
-        </div>
-        <input type="text" name="email_address_check" value="" class="input--hidden">
-        <input type="hidden" name="locale" value="fr">
-        <input type="hidden" name="html_type" value="simple">
     </div>
-  </div>
-</div>
-</div>
-    
-   
+  </header>
 
-  
+  <!-- SECTION FAQ -->
+  <main class="max-w-3xl mx-auto px-6 py-10">
+    <!-- <h2 class="text-amber-800 text-2xl sm:text-3xl font-bold text-center mb-6 ">FAQ</h2> -->
 
-   
-  </div>
-
-<div id="faq" class="faq">
-    <h3>Une Société coopérative ?</h3>
+    <section class="space-y-4">
+      <!-- Question 1 -->
+      <details class="group border rounded-md p-4 bg-zinc-500/20 shadow border-zinc-400/30 m-3" role="listitem">
+        <summary class="flex items-center justify-between cursor-pointer text-lg font-semibold text-gray-800">
+          <span>Une Société coopérative ?</span>
+          <svg class="w-5 h-5 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="mt-3 text-gray-700 space-y-2">
     <p>Kropotkine sera créée en Société Coopérative de Production.</p>
     <p>Dans une SCOP, les salarié.e.s contrôlent la majorité du capital, réunissent le pouvoir de décision entre leurs mains et reçoivent la majorité des bénéfices.</p>
     <p>La spéculation n’est pas possible. La richesse créée reste collective. </p>
+        </div>
+      </details>
 
-    <h3>Quels produits?</h3>
-
+      <!-- Question 2 -->
+      <details class="group border rounded-md p-4 bg-zinc-500/20 shadow border-zinc-400/30 m-3" role="listitem">
+        <summary class="flex items-center justify-between cursor-pointer text-lg font-semibold text-gray-800">
+          <span>Quels produits ?</span>
+          <svg class="w-5 h-5 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="mt-3 text-gray-700 space-y-2">
     <p>Du pain, bio au levain, cuit au feu de bois.</p>
     <p>Du pain de qualité - à trois titres : bon en bouche, meilleur pour la planète (issu de farines paysannes bios cultivées localement) et bon pour le corps (le pain au levain, naturellement pauvre en gluten, est plus sain pour l’organisme).</p>
     <p>D’autres produits valorisants nos techniques (pizzas, focaccia) et la cuisine de produits fermentés, travaillée avec une cheffe spécialisée dans ces produits (qui risque, dit-on, de vouloir transmettre son savoir aux intéressés).</p>
+        </div>
+      </details>
 
-    <h3>Pourquoi ce nom, Kropotkine?</h3>
+      <!-- Question 3 -->
+      <details class="group border rounded-md p-4 bg-zinc-500/20 shadow border-zinc-400/30 m-3" role="listitem">
+        <summary class="flex items-center justify-between cursor-pointer text-lg font-semibold text-gray-800">
+          <span>Pourquoi ce nom, Kropotkine ?</span>
+          <svg class="w-5 h-5 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="mt-3 text-gray-700 space-y-2">
+          <p class="italic">"Oui certes, nous sommes riches, infiniment plus que nous ne le pensons. Riches par ce que nous possédons déjà ; encore plus riches par ce que nous pouvons produire avec l’outillage actuel. Infiniment plus riches par ce que nous pourrions obtenir de notre sol, de nos manufactures, de notre science et de notre savoir technique, s’ils étaient appliqués à procurer le bien-être de tous."</p>
 
-    <p style="font-style: italic;">"Oui certes, nous sommes riches, infiniment plus que nous ne le pensons. Riches par ce que nous possédons déjà ; encore plus riches par ce que nous pouvons produire avec l’outillage actuel. Infiniment plus riches par ce que nous pourrions obtenir de notre sol, de nos manufactures, de notre science et de notre savoir technique, s’ils étaient appliqués à procurer le bien-être de tous."</p>
+          <p>Piotr Kropotkine a écrit en 1892 « La conquête du pain », un livre qui prône l'entraide et la coopération.</p>
+          <p>Avec ce projet, nous voulons faire plus que nourrir autrui avec du pain et des pizzas de qualité.</p>
+          <p>Nous souhaitons aussi faire la preuve concrète qu’une autre voie, celle de l'entraide et de la coopération, est possible.</p>
+          <p>Notre ambition? Qu'à terme, nous puissions voir d’autres collectifs s’emparer de ce que nous aurons créé et multiplier les boulangeries punk.</p>
+        </div>
+      </details>
 
-    <p>Piotr Kropotkine a écrit en 1892 « La conquête du pain », un livre qui prône l'entraide et la coopération.</p>
-    <p>Avec ce projet, nous voulons faire plus que nourrir autrui avec du pain et des pizzas de qualité.</p>
-    <p>Nous souhaitons aussi faire la preuve concrète qu’une autre voie, celle de l'entraide et de la coopération, est possible.</p>
-    <p>Notre ambition? Qu'à terme, nous puissions voir d’autres collectifs s’emparer de ce que nous aurons créé et multiplier les boulangeries punk.</p>
+      <!-- Question 4 -->
+      <details class="group border rounded-md p-4 bg-zinc-500/20 shadow border-zinc-400/30 m-3" role="listitem">
+        <summary class="flex items-center justify-between cursor-pointer text-lg font-semibold text-gray-800">
+          <span>Quand, comment ?</span>
+          <svg class="w-5 h-5 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="mt-3 text-gray-700">
+          Nous envisageons une ouverture fin 2026, en métropole lilloise.
+        </div>
+      </details>
+    </section>
+  </main>
 
-    <h3>Quand, comment? </h3>
-
-    <p>Nous envisageons une ouverture fin 2026, en métropole lilloise.</p>
-
-      </div>
- <!-- Footer avec logos gris -->
-    
-    </div>
-   <footer>
-      <a href="https://www.instagram.com/boulangerie_kropotkine/" target="_blank">
-        <img src="instagram.svg" alt="Instagram">
+  <!-- FOOTER -->
+  <footer class="py-8">
+    <div class="max-w-3xl mx-auto px-6 flex items-center justify-center gap-4">
+      <a href="https://www.instagram.com/boulangerie_kropotkine/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kropotkine">
+        <img src="/src/instagram.svg" alt="Instagram" class="w-10 h-10 transition-transform duration-300 hover:scale-110" />
       </a>
-     
-    </footer>
+      <p class="text-sm text-gray-600">© Boulangerie Kropotkine</p>
+    </div>
+  </footer>
+
+  <!-- Petit script pour améliorer l'accessibilité des <details> (ouvre/ferme avec Enter/Espace) -->
+  <script>
+    document.querySelectorAll('details summary').forEach(summary => {
+      summary.setAttribute('tabindex', '0');
+      summary.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const details = summary.parentElement;
+          details.open = !details.open;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
